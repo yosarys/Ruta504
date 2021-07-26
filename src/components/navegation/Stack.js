@@ -2,7 +2,7 @@ import React from "react";
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Home from "../screens/Home";
-import Departaments from '../screens/Departaments';
+import {Departaments} from '../screens/Departaments';
 import AddActivity from '../screens/AddActivity';
 import Itinerary from '../screens/Itinerary';
 import Places from '../screens/Places';
