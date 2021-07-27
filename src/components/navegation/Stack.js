@@ -4,6 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import Home from "../screens/Home";
 import {Departaments} from '../screens/Departaments';
 import AddActivity from '../screens/AddActivity';
+import Signin from '../screens/Signin';
+import Signup from '../screens/Signup';
 import Itinerary from '../screens/Itinerary';
 import Places from '../screens/Places';
 
@@ -20,6 +22,11 @@ function MyStack() {
         <Stack.Screen name="AddActivity" component={AddActivity} options= {{title:"Actividad"}}/>
         <Stack.Screen name="Itinerary" component={Itinerary} options= {{title:"Mi Itinerario"}}/>
         <Stack.Screen name="Places" component={Places} options= {{title:"Lugares Turisticos"}}/>
+      </Stack.Navigator>
+      
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Signin" component={Signin} />
+        <Stack.Screen name="Signup" component={Signup} />
       </Stack.Navigator>
    </NavigationContainer>
    ) 
