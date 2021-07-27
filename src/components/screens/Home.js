@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View,StyleSheet, TouchableOpacity, Text} from 'react-native';
-
+import { Context as AuthContext } from "../../providers/AuthContext";
 
 function Home({ navigation }) {
+const { signout } = useContext(AuthContext);
 
     return (
       <View style={styles.container}> 
@@ -22,7 +23,7 @@ function Home({ navigation }) {
         </TouchableOpacity> 
 
         <TouchableOpacity  style={styles.button}
-           onPress= {(console.log)}>
+           onPress= {signout}>
           <Text style={styles.text}>Cerrar Sesion</Text>
         </TouchableOpacity> 
 

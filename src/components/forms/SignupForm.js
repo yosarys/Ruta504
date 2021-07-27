@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, Caption, Text, TextInput } from "react-native-paper";
+import { Context as AuthContext } from "../../providers/AuthContext";
 import { validate } from "email-validator";
 
 function SignupForm({ navigation }) {
+  const { state, signup } = useContext(AuthContext);
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -65,7 +67,7 @@ function SignupForm({ navigation }) {
         onChangeText={setFullname}
         onBlur={() => handleVerify("Nombre Completo")}
       />
-      {fullnameError && <Caption>Please enter your name</Caption>}
+      {fullnameError && <Caption>Por favor, ingresa tu nombre</Caption>}
       <TextInput
         mode="outlined"
         label="correo electronico"
@@ -102,7 +104,7 @@ function SignupForm({ navigation }) {
       <Button
         mode="contained"
         style={styles.button}
-        onPress={() => handleVerify("signup")}
+        onPress={() => handleVerify("Registrate")}
       >
         Crear Cuenta
       </Button>

@@ -1,8 +1,10 @@
 import React, { useState, useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, Caption, Text, TextInput } from "react-native-paper";
+import { Context as AuthContext } from "../../providers/AuthContext";
 
 function SigninForm() {
+  const { state, signin } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
