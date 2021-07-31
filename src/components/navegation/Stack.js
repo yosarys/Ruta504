@@ -7,7 +7,7 @@ import {Departaments} from '../screens/Departaments';
 import AddActivity from '../screens/AddActivity';
 import Signin from '../screens/Signin';
 import Signup from '../screens/Signup';
-import Itinerary from '../screens/Itinerary';
+import ItineraryScreen from '../screens/ItineraryScreen';
 import Places from '../screens/Places';
 
 const Stack = createStackNavigator();
@@ -28,7 +28,7 @@ useEffect(() => {
         <Stack.Screen name="Home" component={Home} options={{title:"Ruta504"}}/>
         <Stack.Screen name="Departaments" component={Departaments} options= {{title:"Departamentos"}}/>
         <Stack.Screen name="AddActivity" component={AddActivity} options= {{title:"Actividad"}}/>
-        <Stack.Screen name="Itinerary" component={Itinerary} options= {{title:"Mi Itinerario"}}/>
+        <Stack.Screen name="Itinerary" component={ItineraryScreen} options= {{title:"Mi Itinerario"}}/>
         <Stack.Screen name="Places" component={Places} options= {{title:"Lugares Turisticos"}}/>
       </Stack.Navigator>
        ) : (
