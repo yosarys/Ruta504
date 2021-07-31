@@ -50,7 +50,7 @@ const DATA = [
   },
   {
     id:"10",
-    title:"Intibucá",
+    title:"Intibuca",
     img: "https://www.laprensa.hn/csp/mediapool/sites/dt.common.streams.StreamServer.cls?STREAMOID=OCXjpkZY0OSUJixzRLNyY8$daE2N3K4ZzOUsqbU5sYscUKO4AYGOWFrZSg1h9EHv6FB40xiOfUoExWL3M40tfzssyZqpeG_J0TFo7ZhRaDiHC9oxmioMlYVJD0A$3RbIiibgT65kY_CSDiCiUzvHvODrHApbd6ry6YGl5GGOZrs-&CONTENTTYPE=image/jpeg",
   },
   {
@@ -114,7 +114,7 @@ export const Departaments = ({navigation}) => {
     return (
       <Item
         item={item}
-        onPress={() => navigation.navigate('Places')}
+        onPress={() => navigation.navigate('Places',{departamento:item.title})}
         backgroundColor={{ backgroundColor }}
         textColor={{ color }}
       />

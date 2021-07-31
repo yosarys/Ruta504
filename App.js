@@ -4,6 +4,17 @@ import { Provider as AuthProvider } from "./src/providers/AuthContext";
 import { Provider as ActivityContext} from './src/providers/ActivityContext';
 import MyStack from './src/components/navegation/Stack';
 
+import { LogBox } from 'react-native';
+import _ from 'lodash';
+
+LogBox.ignoreLogs(['Setting a timer']);
+const _console = _.clone(console);
+console.warn = message => {
+  if (message.indexOf('Setting a timer') <= -1) {
+    _console.warn(message);
+  }
+};
+
 export default function App() {
   return (
    <ActivityContext>
