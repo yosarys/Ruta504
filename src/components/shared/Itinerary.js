@@ -7,7 +7,7 @@ import { format } from "date-fns";
 /*https://callstack.github.io/react-native-paper/dialog.html*/
 
 const { height, width } = Dimensions.get("screen");
-function Itinerary({ id, title,description,date,timestamp, deleteActivity}) {
+function Itinerary({ id, title,description,date,timestamp}) {
   const [visible, setVisible]=useState(false);
   const showDialog = () => setVisible(true);
   const hideDialog = () => setVisible(false);
