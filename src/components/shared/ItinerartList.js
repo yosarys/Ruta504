@@ -7,7 +7,7 @@ function ItineraryList({ activities}) {
   
   const emptyFlatList = (
     <View style={styles.emptyActivity}>
-      <Text>Aún no tienes actividades creadas...</Text>
+      <Text style={{fontSize:20}}>Aún no tienes actividades creadas...</Text>
     </View>
   );
 
@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
   },
   emptyActivity: {
     flex: 1,
+    marginTop:250,
     justifyContent: "center",
     alignSelf: "center",
   },

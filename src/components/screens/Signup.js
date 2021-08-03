@@ -1,16 +1,26 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View, ImageBackground,StatusBar, ScrollView} from "react-native";
 import { Text } from "react-native-paper";
 import SignupForm from "../forms/SignupForm";
+import theme from "../../theme";
 
 function Signup({ navigation }) {
   return (
     <View style={styles.container}>
-      <SignupForm />
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Text>¿Ya tiene una cuenta?<Text style={styles.signin}>inicia Sesion</Text>
-        </Text>
-      </TouchableOpacity>
+      <StatusBar/>
+       <ImageBackground source= {require('../../../assets/fondo.jpg')}  blurRadius={0.8}  style={{flex: 1,}}>
+         <ScrollView>
+            <View>
+              <Text style={styles.text}>Registro</Text>
+            </View>
+            <View style={{marginVertical:'8%'}}>
+              <SignupForm />
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Text style={{marginHorizontal:10,fontWeight:'bold'}}>¿Ya tiene una cuenta?<Text style={styles.signup}>  Inicia Sesion</Text></Text>
+         </TouchableOpacity>
+             </View>
+          </ScrollView>
+      </ImageBackground>
     </View>
   );
 }
@@ -18,12 +28,18 @@ function Signup({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    padding: 10,
-    backgroundColor: 'white',
+    flexDirection: "column"
   },
-  signin: {
-    color:'blue',
+  signup: {
+    color:theme.colors.primary,
+    fontWeight:'bold'
+  },
+  text:{
+    fontSize:45,
+    color:'white',
+    fontFamily:'Parisienne_400Regular',
+    textAlign: 'center',
+    marginTop:'30%'
   },
 });
 

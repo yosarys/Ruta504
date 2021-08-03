@@ -9,6 +9,7 @@ import Signin from '../screens/Signin';
 import Signup from '../screens/Signup';
 import ItineraryScreen from '../screens/ItineraryScreen';
 import Places from '../screens/Places';
+import { IconButton } from "react-native-paper";
 
 const Stack = createStackNavigator();
 
@@ -25,7 +26,7 @@ useEffect(() => {
      <>
       {state.loggedIn ? (
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} options={{title:"Ruta504"}}/>
+        <Stack.Screen name="Home" component={Home} options= {{headerShown:false}}/> 
         <Stack.Screen name="Departaments" component={Departaments} options= {{title:"Departamentos"}}/>
         <Stack.Screen name="AddActivity" component={AddActivity} options= {{title:"Actividad"}}/>
         <Stack.Screen name="Itinerary" component={ItineraryScreen} options= {{title:"Mi Itinerario"}}/>

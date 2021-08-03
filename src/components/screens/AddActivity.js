@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
-import { StyleSheet, View, Button,Platform} from "react-native";
-import { TextInput, IconButton, Title} from "react-native-paper";
+import { StyleSheet, View,Platform, ScrollView, ImageBackground} from "react-native";
+import { TextInput, IconButton, Title,Button} from "react-native-paper";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Textarea from 'react-native-textarea';
 import { Context as ActivityContext } from "../../providers/ActivityContext";
 import { Context as AuthContext } from "../../providers/AuthContext";
+import theme from "../../theme";
 
 function CreateProject() {
   const { createActivity } = useContext(ActivityContext);
@@ -17,11 +18,12 @@ function CreateProject() {
   const [show, setShow] = useState(false);
   const [text, setText] = useState('Fecha')
 
+  /*Utilización de DateTimePicker dandole un formato a la fecha y redirigiendo la funcion a un IconButton*/
+  /*https://github.com/react-native-datetimepicker/datetimepicker*/
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
     setDate(currentDate);
-
     let tempDate = new Date(currentDate);
     let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear();
     setText(fDate)
@@ -39,11 +41,13 @@ function CreateProject() {
   }
 
   return (
- <View style={styles.container}>
-   <Title style={styles.title}>Añadir Actividad</Title>
-      <TextInput
-        mode="outlined"
-        label= "Titulo"
+<ImageBackground source= {require('../../../assets/agregar.jpg')} style={{flex: 1}}>
+  <ScrollView>
+   <View style={styles.container}>
+    <Title style={styles.title}>Añadir Actividad</Title>
+      <TextInput style={styles.input}
+        mode="flat"
+        placeholder= "Titulo"
         color='black'
         autoCapitalize="none"
         value={activityTitle}
@@ -51,7 +55,7 @@ function CreateProject() {
       />
     <View style={styles.area}>  
       <Textarea  style={styles.text}
-        placeholder= "Descripcion"
+        placeholder= "Descripción"
         numberOfLines= {10}
         maxLength={120}
         value={activityDescription}
@@ -63,6 +67,7 @@ function CreateProject() {
      <View>
       <TextInput style={styles.dateP} 
         mode='outlined'
+        outlineColor='gray'
         editable={false} 
         selectTextOnFocus={false}>{text}
       </TextInput>
@@ -71,8 +76,8 @@ function CreateProject() {
     <View>
        <IconButton style ={styles.icon}
         icon= "calendar-month" 
-        size={60}
-        color= '#007dff'
+        size={55}
+        color= '#00cce9'
         onPress={() => showMode('date')}
        />
     </View>
@@ -87,13 +92,15 @@ function CreateProject() {
           />
       )}
        <View style={styles.button}>
-        <Button
-          title="Guardar"
+        <Button 
           onPress={() => handleSave()}
-        />
+          color='white'>
+          Guardar
+        </Button>
       </View>
-
   </View>
+ </ScrollView>
+</ImageBackground>
   );
 }
 
@@ -103,11 +110,15 @@ const styles = StyleSheet.create({
     marginTop:90,
   },
   title:{
-    textAlign:'center'
+    textAlign:'center',
+    fontSize:30,
+    top:-20,
+    fontFamily:'Marcellus_400Regular'
   },
   area:{
     borderRadius:4,
     borderWidth: 1,
+    backgroundColor:'white',
     borderColor: 'grey',
     marginTop: 10,
     padding: 10,
@@ -118,16 +129,27 @@ const styles = StyleSheet.create({
   },
   dateP:{
     marginTop: 5,
-    backgroundColor: 'transparent',
-    width:200
+    backgroundColor: 'white',
+    width:200,
+    height:45
   },
   button:{
     marginTop:10,
+    backgroundColor:'#00cce9',
+    borderRadius:20,
   },
   icon:{
     width:'100%',
     marginTop:-5
-  }
+  },
+  input:{
+    flex:1,
+    height:30,
+    padding:10,
+    marginHorizontal:5,
+    marginVertical:10,
+    backgroundColor:theme.colors.white,
+  },
 });
 
 export default CreateProject;

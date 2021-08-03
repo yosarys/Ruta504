@@ -1,57 +1,49 @@
-import React, { useContext, useState} from "react";
-import { View,StyleSheet, TouchableOpacity,SafeAreaView} from 'react-native';
-import {Modal,Portal, IconButton,Text} from 'react-native-paper';
+import React, { useContext} from "react";
+import { View,StyleSheet, TouchableOpacity, ScrollView,ImageBackground, Dimensions} from 'react-native';
+import {IconButton,Text} from 'react-native-paper';
 import { Context as AuthContext } from "../../providers/AuthContext";
+import Header from "../AppBar";
+
+const { height, width } = Dimensions.get("screen");
 
 function Home({ navigation }) {
 const { signout } = useContext(AuthContext);
-const [modal, setModal] = useState(false); 
 
-    return (
-      <View style={styles.container}> 
-      <TouchableOpacity style={styles.button}
-         onPress={() => navigation.navigate('Departaments')}>
-        <Text style={styles.text}>Lugares Turisticos</Text>
-      </TouchableOpacity>
-
+    return (   
+<View style={styles.container}> 
+   <Header/>
+    <ScrollView> 
+    <ImageBackground source={require('../../../assets/home.jpg')} style={{flex:1}}>
+       <View style={{marginTop:10}}>
+         <TouchableOpacity style={styles.button}
+          onPress={() => navigation.navigate('Departaments')}>
+         <ImageBackground source={require('../../../assets/Lugares.png')} style={{flex:1}}>
+            <Text style={styles.text}>Lugares Turisticos</Text>
+          </ImageBackground>
+        </TouchableOpacity> 
+    
         <TouchableOpacity  style={styles.button}
           onPress={() => navigation.navigate('AddActivity')}>
+       <ImageBackground source={require('../../../assets/Añadir.png')} style={{flex:1}}>
           <Text style={styles.text}>Añadir Actividad</Text>
+        </ImageBackground>
         </TouchableOpacity> 
-
-        <TouchableOpacity  style={styles.button}
+      
+        <TouchableOpacity style={styles.button}
           onPress={() => navigation.navigate('Itinerary')}>
+        <ImageBackground source={require('../../../assets/Itinerario.png')} style={{flex:1}}>
           <Text style={styles.text}>Mi Itinerario</Text>
+        </ImageBackground>
         </TouchableOpacity> 
-
-        <TouchableOpacity  style={styles.button}
-           onPress= {signout}>
-          <Text style={styles.text}>Cerrar Sesion</Text>
-        </TouchableOpacity> 
-
-        <IconButton
-        icon="cog"
-        color='blue'
-        size={30}
-        onPress={() => setModal(true)}/>
-
-      <Portal>
-        <Modal visible={modal} style={styles.modal}>
-            <SafeAreaView>
-              <IconButton 
-                icon="close"
-                size={25}
-                onPress={() => setModal(false)}/>
-              <View>
-                <Text>
-                  Ruta504
-                </Text>
-              </View>
-            </SafeAreaView>
-          </Modal>
-      </Portal>
-
       </View>
+      <IconButton
+        icon="exit-to-app"
+        color='white'
+        size={42}
+        onPress= {signout}/>
+     </ImageBackground>
+    </ScrollView>
+  </View>
     );
   }
 
@@ -59,31 +51,20 @@ const [modal, setModal] = useState(false);
 
   const styles = StyleSheet.create({
   container:{
-    padding:10,
-    marginTop: 90,
-    marginHorizontal: 90,
+    padding:-1
   },
   button: {
-      width: 280,
-      height: 110,
-      marginTop: 10,
-      backgroundColor:'blue',
-      borderRadius: 25,
-      borderWidth: 3,
-      borderColor: 'grey',
+      width: width * 0.98,
+      height: height * 0.24,
+      marginHorizontal:3.5,
+      top:14,
+      margin:1,
   },
   text:{
-    fontSize: 23,
+    fontSize: 25,
+    fontFamily:'Marcellus_400Regular',
     textAlign:"center", 
-    margin:30,
+    margin:18,
     color: 'white',
-  },
-  modal: {
-    margin: 20,
-    marginTop:1,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
   },
 });

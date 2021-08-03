@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react";
-import { StyleSheet, View } from "react-native";
-import { Button, Caption, Text, TextInput } from "react-native-paper";
+import { StyleSheet, View,TextInput} from "react-native";
+import { Button, Caption, Text} from "react-native-paper";
 import { Context as AuthContext } from "../../providers/AuthContext";
+import { Icon } from "react-native-elements";
+import theme from "../../theme";
 
 function SigninForm() {
   const { state, signin } = useContext(AuthContext);
@@ -26,32 +28,46 @@ function SigninForm() {
   }
 
   return (
-    <View>
+    <View style={{opacity:0.80,margin:5}}>
       {state.errorMessage != null && <Text>{state.errorMessage}</Text>}
-      <TextInput
-        mode="outlined"
-        label="Email"
+    <View style={styles.container}>
+      <Icon style={styles.icon} 
+       type='ionicon' 
+       name='md-person'
+       size={30}
+       color= 'white'
+       />
+      <TextInput style={styles.input}
+        placeholder=" Correo electronico"
         autoCapitalize="none"
         onChangeText={setEmail}
         value={email}
         onBlur={() => handleVerify("email")}
       />
+    </View>
       {emailError && (
-        <Caption>Por favor ingresa tu cuenta de correo electrónico</Caption>
+        <Caption style={styles.caption}>Por favor ingresa tu cuenta de correo electrónico</Caption>
       )}
-      <TextInput
-        mode="outlined"
-        label="Password"
+    <View style={styles.container}>
+     <Icon style={styles.icon} 
+       type='ionicon' 
+       name='md-eye-off'
+       size={30}
+       color= 'white'
+      />
+      <TextInput  style={styles.input}
+        mode="flat"
+        placeholder=" Contraseña"
         autoCapitalize="none"
         secureTextEntry
         onChangeText={setPassword}
         value={password}
-        onBlur={() => handleVerify("password")}
-      />
-      {passwordError && <Caption>Por favor ingresa tu contraseña</Caption>}
+        onBlur={() => handleVerify("password")}/>
+    </View>  
+      {passwordError && <Caption style={styles.caption}>Por favor ingresa tu contraseña</Caption>}
       <Button
         mode="contained"
-        style={styles.button}
+        
         onPress={() => handleVerify("signin")}
       >
        Iniciar Sesion
@@ -61,10 +77,31 @@ function SigninForm() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+  }, 
   button: {
-    marginTop: 20,
-    marginBottom: 20,
+    marginTop: 10,
+    marginBottom: 1,
+    marginHorizontal:5,
+    color: theme.colors.primary,
   },
+  input:{
+    flex:1,
+    height:50,
+    padding:10,
+    marginHorizontal:5,
+    marginVertical:10,
+    backgroundColor:theme.colors.white,
+    borderRadius:10,
+  },
+  caption:{
+    color:theme.colors.black,
+    marginHorizontal:35
+  },
+  icon:{
+    marginTop:'60%'
+  }
 });
 
 export default SigninForm;

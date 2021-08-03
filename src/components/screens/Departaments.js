@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity, Image,View} from "react-native";
-import Places from "./Places";
+import { FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity, Image,View, ImageBackground, Dimensions} from "react-native";
+
+const { height, width } = Dimensions.get("screen");
 
 const DATA = [
   {
@@ -35,7 +36,7 @@ const DATA = [
   },
   {
     id:"7",
-    title:"El Paraíso",
+    title:"El Paraiso",
     img: "https://www.hondurastips.hn/wp-content/uploads/2012/02/00-1-768x465.jpg",
   },
   {
@@ -80,7 +81,7 @@ const DATA = [
   },
   {
     id:"16",
-    title:"Santa Bárbara",
+    title:"Santa Barbara",
     img: "https://upload.wikimedia.org/wikipedia/commons/1/17/SBBotanicGarden1.jpg",
   },
   {
@@ -98,8 +99,8 @@ const DATA = [
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
     <View>
-    <Image style ={styles.img} source = {{uri:`${item.img}`}} />
-    <Text style={[styles.title, textColor]}>{item.title}</Text>
+      <Image style ={styles.img} source = {{uri:`${item.img}`}} />
+      <Text style={[styles.title, textColor]}>{item.title}</Text>
     </View>
   </TouchableOpacity>
 );
@@ -109,7 +110,7 @@ export const Departaments = ({navigation}) => {
 
   const renderItem = ({ item}) => {
     const backgroundColor = item.id === selectedId ? "#fdfefe" : "#fdfefe";
-    const color = item.id === selectedId ? 'white' : 'black';
+    const color = item.id === selectedId ? 'black' : '#5e5e5e';
 
     return (
       <Item
@@ -122,36 +123,42 @@ export const Departaments = ({navigation}) => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex: 1,flexDirection: "column"}}>
+      <ImageBackground source={require('../../../assets/departamentos.jpg')} style={{flex:1}}>
            <FlatList
             data={DATA}
             numColumns = { "2" }
             renderItem={renderItem}
             keyExtractor={(item) => item.id}
-            extraData={selectedId}
-             />
+            extraData={selectedId}/>
+    </ImageBackground>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   item: {
+    width: width * 0.46,
+    height: height * 0.25,  
     padding: 1,
     paddingVertical: 1,
     marginVertical: 7,
-    marginHorizontal: 17,
-    marginTop: 10,
+    marginHorizontal: 7,
+    marginTop: 8,
     borderWidth: 2, 
+    borderColor:'white',
     borderRadius: 9,
   },
   title: {
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: 19,
+    marginTop:4,
+    fontFamily:'Sail_400Regular',
     textAlign: "center",
   },
   img:{
-     width: 200,
-     height: 180, 
-     borderRadius:7
+    width: width * 0.44,
+    height: height * 0.2,  
+    marginHorizontal:1,
+    borderRadius:7
   }
 });

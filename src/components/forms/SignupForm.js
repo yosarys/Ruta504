@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { Button, Caption, Text, TextInput } from "react-native-paper";
+import { StyleSheet, View,TextInput} from "react-native";
+import { Button, Caption, Text } from "react-native-paper";
 import { Context as AuthContext } from "../../providers/AuthContext";
 import { validate } from "email-validator";
+import { Icon } from "react-native-elements";
+import theme from "../../theme";
 
 function SignupForm({ navigation }) {
   const { state, signup } = useContext(AuthContext);
@@ -57,49 +59,76 @@ function SignupForm({ navigation }) {
   }
 
   return (
-    <View>
+    <View style={{opacity:0.80,margin:5}}>
       {error && <Text>{error}</Text>}
       {state.errorMessage != null && <Text>{state.errorMessage}</Text>}
-      <TextInput
-        mode="outlined"
-        label="Nombre Completo"
+    <View style={styles.container}>
+    <Icon style={styles.icon} 
+       type='ionicon' 
+       name='md-person'
+       size={30}
+       color= 'white'
+       />
+      <TextInput style={styles.input}
+        placeholder="Nombre Completo"
         value={fullname}
         onChangeText={setFullname}
         onBlur={() => handleVerify("Nombre Completo")}
       />
-      {fullnameError && <Caption>Por favor, ingresa tu nombre</Caption>}
-      <TextInput
-        mode="outlined"
-        label="correo electronico"
+    </View>
+      {fullnameError && <Caption style={styles.caption}>Por favor, ingresa tu nombre</Caption>}
+    <View style={styles.container}>
+    <Icon style={styles.icon} 
+       type='ionicon' 
+       name='md-mail'
+       size={30}
+       color= 'white'
+       />
+      <TextInput style={styles.input}
+        placeholder="Correo electronico"
         value={email}
         onChangeText={setEmail}
         autoCapitalize="none"
         onBlur={() => handleVerify("correo electronico")}
       />
-      {emailError && <Caption>Por favor, escriba su correo electronico</Caption>}
-      <TextInput
-        mode="outlined"
-        label="Contraseña"
+    </View>
+      {emailError && <Caption style={styles.caption}>Por favor, escriba su correo electronico</Caption>}
+    <View style={styles.container}>
+    <Icon style={styles.icon} 
+       type='ionicon' 
+       name='md-eye-off'
+       size={30}
+       color= 'white'
+     />
+      <TextInput style={styles.input}
+        placeholder="Contraseña"
         value={password}
         onChangeText={setPassword}
         autoCapitalize="none"
         secureTextEntry
         onBlur={() => handleVerify("Contraseña")}
       />
+    </View>
       {passwordError && (
-        <Caption>por favor, Ingrese una contraseña valida. Minimo 6 caracteres</Caption>
-      )}
-      <TextInput
-        mode="outlined"
-        label="Confirme su contraseña"
+        <Caption style={styles.caption}>Por favor, Ingrese una contraseña valida. Minimo 6 caracteres</Caption>)}
+    <View style={styles.container}>
+    <Icon style={styles.icon} 
+       type='ionicon' 
+       name='md-eye-off'
+       size={30}
+       color= 'white'
+    />
+      <TextInput style={styles.input}
+        placeholder="Confirme su contraseña"
         value={confirmPassword}
         onChangeText={setConfirmPassword}
         autoCapitalize="none"
         secureTextEntry
         onBlur={() => handleVerify("Confirme su contraseña")}
       />
+    </View>
       {confirmPasswordError && (
-        <Caption>Por favor, escriba su confirmacion de contraseña</Caption>
+        <Caption style={styles.caption}>Por favor, escriba su confirmacion de contraseña</Caption>
       )}
       <Button
         mode="contained"
@@ -113,10 +142,31 @@ function SignupForm({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  button: {
-    marginTop: 20,
-    marginBottom: 20,
+  container: {
+    flexDirection: 'row',
   },
+  button: {
+    marginTop: 10,
+    marginBottom: 1,
+    marginHorizontal:5,
+    color: theme.colors.primary
+  },
+  input:{
+    flex:1,
+    height:50,
+    padding:10,
+    marginHorizontal:5,
+    marginVertical:10,
+    backgroundColor:theme.colors.white,
+    borderRadius:10,
+  },
+  caption:{
+    color:theme.colors.white,
+    marginHorizontal:35
+  },
+  icon:{
+    marginTop:'60%'
+  }
 });
 
 export default SignupForm;

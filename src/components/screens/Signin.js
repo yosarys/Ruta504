@@ -1,17 +1,26 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View, ImageBackground,StatusBar, ScrollView} from "react-native";
 import { Text } from "react-native-paper";
 import SigninForm from "../forms/SigninForm";
+import theme from "../../theme/index";
 
 function Signin({ navigation }) {
   return (
     <View style={styles.container}>
-      <SigninForm />
-      <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-        <Text>
-        ¿No tienes una cuenta? <Text style={styles.signup}>Registrate</Text>
-        </Text>
-      </TouchableOpacity>
+      <StatusBar/>
+      <ImageBackground source= {require('../../../assets/fondo.jpg')} blurRadius={0.8} style={{flex: 1}}>
+      <View style={{top:'25%'}}>
+        <Text style={styles.text}>Ruta504</Text>
+      </View>
+      <ScrollView style={{top:'30%'}}>
+         <SigninForm/>
+          <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+         <Text style={{marginHorizontal:10,fontWeight:'bold'}}>¿No tienes una cuenta? 
+           <Text style={styles.signin}> Registrate</Text>
+         </Text>
+         </TouchableOpacity>
+      </ScrollView>
+      </ImageBackground>
     </View>
   );
 }
@@ -19,15 +28,17 @@ function Signin({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    padding: 10,
-    backgroundColor: 'white',
+    flexDirection: "column"
   },
-  forgotPassword: {
-    textAlign: "auto",
+  signin: {
+    color: theme.colors.primary,
+    fontWeight:'bold'
   },
-  signup: {
-    color: 'blue',
+  text:{
+    fontSize:45,
+    fontFamily: 'Parisienne_400Regular',
+    textAlign: 'center',
+    color: theme.colors.white
   },
 });
 

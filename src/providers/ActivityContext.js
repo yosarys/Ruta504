@@ -61,6 +61,6 @@ export const { Provider, Context } = createDataContext(
         getActivity
     }, {
         errorMessage: null,
-        activities:[],
+        activities: [],
     }
 );
